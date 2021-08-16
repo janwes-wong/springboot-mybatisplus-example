@@ -1,0 +1,27 @@
+# 服务端口号
+server:
+  port: 2248
+spring:
+  application:
+    # 服务应用名
+    name: mybatis-plus-example
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_data?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+mybatis-plus:
+  # 设置Mapper接口所对应的XML文件位置，如果你在Mapper接口中有自定义方法，需要进行该配置
+  mapper-locations: classpath*:mapper/*.xml
+  # 设置别名包扫描路径，通过该属性可以给包中的类注册别名
+  type-aliases-package: com.janwes.pojo
+  # 全局配置
+  global-config:
+    db-config:
+      # 数据库表名前缀
+      table-prefix: tb_
+      # id生成策略 数据库id自增
+      id-type: auto
+  configuration:
+    # 日志 控制台打印输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
