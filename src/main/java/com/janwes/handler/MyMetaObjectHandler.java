@@ -34,6 +34,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     }
 
     /**
+     * 更新时自动填充
+     *
      * @param metaObject
      */
     @Override
