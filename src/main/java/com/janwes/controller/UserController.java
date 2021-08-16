@@ -22,6 +22,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 根据id更新数据
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/update/{id}")
     public String updateById(@PathVariable("id") Long id) {
         User user = new User();
@@ -32,5 +38,25 @@ public class UserController {
             return "更新成功";
         }
         return "更新失败";
+    }
+
+    /**
+     * 保存数据
+     *
+     * @return
+     */
+    @GetMapping("/save")
+    public String save() {
+        User user = new User();
+        user.setUserName("andy");
+        user.setPassword("qazwsx741");
+        user.setName("andy");
+        user.setAge(25);
+        user.setEmail("test9@xxx.com");
+        boolean result = userService.save(user);
+        if (result) {
+            return "保存成功";
+        }
+        return "保存失败";
     }
 }

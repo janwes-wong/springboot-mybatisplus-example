@@ -23,5 +23,8 @@ mybatis-plus:
       # id生成策略 数据库id自增
       id-type: auto
   configuration:
-    # 日志 控制台打印输出
+    # 配置控制台打印带参数sql执行语句
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com: debug
