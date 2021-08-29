@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.janwes.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author Janwes
  * @version 1.0
@@ -16,4 +18,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper extends BaseMapper<User> {
 
     IPage<User> selectUsers(IPage<User> page, @Param("age") int age);
+
+    List<User> search(@Param("ids") List<Integer> ids, @Param("age") int age);
 }
