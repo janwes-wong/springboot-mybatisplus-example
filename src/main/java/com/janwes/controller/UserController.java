@@ -1,12 +1,16 @@
 package com.janwes.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.janwes.mapper.UserMapper;
 import com.janwes.pojo.User;
 import com.janwes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @author Janwes
@@ -21,6 +25,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * 根据id更新数据
@@ -58,5 +65,25 @@ public class UserController {
             return "保存成功";
         }
         return "保存失败";
+    }
+
+    @GetMapping("/login")
+    public void login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response) {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF8");
+        try {
+            LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+            User user = userMapper.selectOne(queryWrapper.eq(User::getUserName, username));
+            if (Objects.isNull(user)) {
+                response.getWriter().write("{\"code\":\"5000\",\"message\":\"账号不存在\",\"data\":\"\"}");
+                return;
+            }
+
+            if (!username.equals(user.getUserName()) || !password.equals(user.getPassword())) {
+                response.getWriter().write("{\"code\":\"5000\",\"message\":\"账号或密码错误\",\"data\":\"\"}");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
