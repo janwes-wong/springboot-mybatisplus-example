@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @description 自定义mvc配置
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Autowired
     private LoginInterceptor loginInterceptor;
