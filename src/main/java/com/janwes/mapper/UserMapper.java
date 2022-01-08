@@ -20,4 +20,6 @@ public interface UserMapper extends BaseMapper<User> {
     IPage<User> selectUsers(IPage<User> page, @Param("age") int age);
 
     List<User> search(@Param("ids") List<Integer> ids, @Param("age") int age);
+
+    int saveUser(User user);
 }

@@ -320,4 +320,16 @@ public class MybatisPlusTest {
         List<User> users = userMapper.search(list, 25);
         System.out.println(users);
     }
+
+    @Test
+    public void saveUser() {
+        User user = new User();
+        user.setUserName("alan");
+        user.setPassword("qazwsx741");
+        user.setName("alan");
+        user.setAge(25);
+        user.setEmail("test7@xxx.com");
+        int i = userMapper.saveUser(user);
+        System.out.println("影响行数:" + i);
+    }
 }
