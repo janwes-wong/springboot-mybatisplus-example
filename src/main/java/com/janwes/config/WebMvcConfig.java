@@ -22,6 +22,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
+        // 注册添加拦截器
         registry.addInterceptor(loginInterceptor)
                 // 对所有请求进行拦截
                 .addPathPatterns("/**")
